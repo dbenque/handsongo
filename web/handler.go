@@ -1,10 +1,10 @@
 package web
 
 import (
+	"github.com/Sfeir/handsongo/dao"
+	"github.com/Sfeir/handsongo/model"
+	"github.com/Sfeir/handsongo/utils"
 	logger "github.com/Sirupsen/logrus"
-	"github.com/sebastienfr/handsongo/dao"
-	"github.com/sebastienfr/handsongo/model"
-	"github.com/sebastienfr/handsongo/utils"
 	"gopkg.in/mgo.v2"
 	"net/http"
 	"strconv"

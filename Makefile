@@ -94,7 +94,7 @@ test: setupTest
 	@export MONGODB_SRV=mongodb://$(DOCKER_IP)/spirits; go test -v $(PKGS); make teardownTest
 
 bench:
-	@go test -v -run TestSpiritHandlerGet -bench=. -memprofile=prof.mem github.com/sebastienfr/handsongo/web
+	@go test -v -run TestSpiritHandlerGet -bench=. -memprofile=prof.mem github.com/Sfeir/handsongo/web
 
 benchTool: bench
 	@echo "### TIP : type 'top 5' and 'list the first item'"

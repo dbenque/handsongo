@@ -1,7 +1,7 @@
 package web
 
 import (
-	"github.com/sebastienfr/handsongo/utils"
+	"github.com/Sfeir/handsongo/utils"
 	"net/http"
 	"time"
 )

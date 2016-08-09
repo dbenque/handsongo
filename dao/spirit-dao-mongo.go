@@ -2,8 +2,8 @@ package dao
 
 import (
 	"errors"
+	"github.com/Sfeir/handsongo/model"
 	logger "github.com/Sirupsen/logrus"
-	"github.com/sebastienfr/handsongo/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

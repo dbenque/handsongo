@@ -1,9 +1,9 @@
 package web
 
 import (
+	"github.com/Sfeir/handsongo/utils"
 	logger "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-	"github.com/sebastienfr/handsongo/utils"
 	"net/http"
 )
 
