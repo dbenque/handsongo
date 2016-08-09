@@ -2,8 +2,8 @@ package web
 
 import (
 	"encoding/json"
-	"github.com/sebastienfr/handsongo/dao"
-	"github.com/sebastienfr/handsongo/model"
+	"github.com/Sfeir/handsongo/dao"
+	"github.com/Sfeir/handsongo/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"

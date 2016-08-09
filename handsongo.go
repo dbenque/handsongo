@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
+	"github.com/Sfeir/handsongo/dao"
+	"github.com/Sfeir/handsongo/utils"
+	"github.com/Sfeir/handsongo/web"
 	logger "github.com/Sirupsen/logrus"
-	"github.com/sebastienfr/handsongo/dao"
-	"github.com/sebastienfr/handsongo/utils"
-	"github.com/sebastienfr/handsongo/web"
 	"github.com/urfave/cli"
 	"os"
 	"strconv"

@@ -1,9 +1,9 @@
 package web
 
 import (
+	"github.com/Sfeir/handsongo/dao"
 	logger "github.com/Sirupsen/logrus"
 	"github.com/meatballhat/negroni-logrus"
-	"github.com/sebastienfr/handsongo/dao"
 	"github.com/urfave/negroni"
 	"time"
 )

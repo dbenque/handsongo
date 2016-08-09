@@ -6,8 +6,8 @@ FROM golang:1.6-alpine
 RUN apk add -U make
 
 # set the go path to import the source project
-WORKDIR $GOPATH/src/github.com/sebastienfr/handsongo
-ADD . $GOPATH/src/github.com/sebastienfr/handsongo
+WORKDIR $GOPATH/src/github.com/Sfeir/handsongo
+ADD . $GOPATH/src/github.com/Sfeir/handsongo
 
 # In one command-line (for reduce memory usage purposes),
 # we install the required software,

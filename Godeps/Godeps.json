@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/sebastienfr/handsongo",
+	"ImportPath": "github.com/Sfeir/handsongo",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v74",
 	"Packages": [

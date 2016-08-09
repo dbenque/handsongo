@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/sebastienfr/handsongo/model"
+	"github.com/Sfeir/handsongo/model"
 	"os"
 	"testing"
 	"time"
