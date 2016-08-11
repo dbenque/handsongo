@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"errors"
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/Sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -40,36 +39,43 @@ func NewSpiritDAOMongo(session *mgo.Session) SpiritDAO {
 
 // GetSpiritByID returns a spirit by its ID
 func (s *SpiritDAOMongo) GetSpiritByID(ID string) (*model.Spirit, error) {
-	// check ID
-	if !bson.IsObjectIdHex(ID) {
-		return nil, errors.New("Invalid input to ObjectIdHex")
-	}
 
+	// TODO use the bson library to check if the ID is a well formed ObjectId
+	// if not return a new error "Invalid input to ObjectIdHex"
+	// check ID
+
+	// copying the session and defering the close
 	session := s.session.Copy()
 	defer session.Close()
 
+	// instantiate a new spirit to be hydrated
 	spirit := model.Spirit{}
+
+	// retrieve the collection
 	c := session.DB("").C(collection)
+
+	// find one spirit by its ObjectId
 	err := c.Find(bson.M{"_id": bson.ObjectIdHex(ID)}).One(&spirit)
 	return &spirit, err
 }
 
 // getAllSpiritsByQuery returns spirits by query and paging capability
 func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int) ([]model.Spirit, error) {
-	session := s.session.Copy()
-	defer session.Close()
-	c := session.DB("").C(collection)
+
+	// TODO copy the session and also defer the closing
+
+	// TODO retrieve the collection
 
 	// check param
-	hasPaging := start > -1 && end > -1 && end > start
+	hasPaging := start > NoPaging && end > NoPaging && end > start
 
 	// perform request
 	var err error
 	spirits := []model.Spirit{}
 	if hasPaging {
-		err = c.Find(query).Skip(start).Limit(end - start).All(&spirits)
+		// TODO if paging is defined, use the Find, Skip, Limit and All method to execute the query
 	} else {
-		err = c.Find(query).All(&spirits)
+		// TODO if no paging is defined simply query All the spirits
 	}
 
 	return spirits, err
@@ -82,25 +88,28 @@ func (s *SpiritDAOMongo) GetAllSpirits(start, end int) ([]model.Spirit, error) {
 
 // GetSpiritsByName returns all spirits by name
 func (s *SpiritDAOMongo) GetSpiritsByName(name string) ([]model.Spirit, error) {
-	return s.getAllSpiritsByQuery(bson.M{"name": name}, NoPaging, NoPaging)
+	// TODO with previous method, query all spirits by their name "bson.M{"name": name}" without Paging
+	return nil, nil
 }
 
 // GetSpiritsByType returns all spirits by type
 func (s *SpiritDAOMongo) GetSpiritsByType(spiritType string) ([]model.Spirit, error) {
-	return s.getAllSpiritsByQuery(bson.M{"type": spiritType}, NoPaging, NoPaging)
+	// TODO query all spirits by their type without Paging
+	return nil, nil
 }
 
 // GetSpiritsByTypeAndScore returns all spirits by type and score greater than parameter
 func (s *SpiritDAOMongo) GetSpiritsByTypeAndScore(spiritType string, score uint8) ([]model.Spirit, error) {
-	return s.getAllSpiritsByQuery(bson.M{"type": spiritType, "score": bson.M{"$gte": score}}, NoPaging, NoPaging)
+	// TODO query all spirits by their type and score greater than score parameter ""score": bson.M{"$gte": score}"
+	return nil, nil
 }
 
 // SaveSpirit saves the spirit
 func (s *SpiritDAOMongo) SaveSpirit(spirit *model.Spirit) error {
-	session := s.session.Copy()
-	defer session.Close()
-	c := session.DB("").C(collection)
-	return c.Insert(spirit)
+	// TODO copy the session and also defer the closing
+	// TODO retrieve the collection
+	// TODO use Insert on the collection to save a spirit
+	return nil
 }
 
 // UpsertSpirit updates or creates a spirit
@@ -117,9 +126,8 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 // DeleteSpirit deletes a spirits by its ID
 func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
-	session := s.session.Copy()
-	defer session.Close()
-	c := session.DB("").C(collection)
-	err := c.Remove(bson.M{"_id": bson.ObjectIdHex(ID)})
-	return err
+	// TODO copy the session and also defer the closing
+	// TODO retrieve the collection
+	// TODO use Remove on collection to delete a spirit by its ObjectId
+	return nil
 }

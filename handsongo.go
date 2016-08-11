@@ -61,26 +61,15 @@ func main() {
 			Name:  "port",
 			Usage: "Set the listening port of the webserver",
 		},
-		cli.StringFlag{
-			Value: db,
-			Name:  "db",
-			Usage: "Set the mongo database connection string",
-		},
-		cli.StringFlag{
-			Value: logLevel,
-			Name:  "logl",
-			Usage: "Set the output log level (debug, info, warning, error)",
-		},
-		cli.StringFlag{
-			Value: logFormat,
-			Name:  "logf",
-			Usage: "Set the log formatter (logstash or text)",
-		},
-		cli.DurationFlag{
-			Value: statisticsDuration,
-			Name:  "statd",
-			Usage: "Set the token duration (ex : 1h, 2h30m, 30s, 300ms)",
-		},
+
+		// TODO add string flag called "-db" for the MongoDB connection string
+
+		// TODO add a string flag called "-logl" to provide log level of the application
+
+		// TODO add string flag called "-logf" to choose the log format
+
+		// TODO add a duration flag called "-statd" to define a statistic check period
+
 	}
 
 	// main action
@@ -91,10 +80,14 @@ func main() {
 
 		// parse parameters
 		port = c.Int("port")
-		db = c.String("db")
-		logLevel = c.String("logl")
-		logFormat = c.String("logf")
-		statisticsDuration = c.Duration("statd")
+
+		// TODO assign the "-db" string param to the db var
+
+		// TODO assign the "-logl" string param to the logLevel var
+
+		// TODO assign the "-logf" string param to the logFormat var
+
+		// TODO assign the "-statd" duration param to the statisticsDuration var
 
 		fmt.Print("* --------------------------------------------------- *\n")
 		fmt.Printf("|   port                    : %d\n", port)
@@ -110,6 +103,7 @@ func main() {
 			logger.Warn("error setting log level, using debug as default")
 		}
 
+		// build the web server
 		webServer, err := web.BuildWebServer(db, dao.DAOMongo, statisticsDuration)
 
 		if err != nil {

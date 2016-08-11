@@ -1,10 +1,8 @@
 package dao
 
 import (
-	"github.com/Sfeir/handsongo/model"
 	"os"
 	"testing"
-	"time"
 )
 
 func TestDAOMongo(t *testing.T) {
@@ -16,25 +14,12 @@ func TestDAOMongo(t *testing.T) {
 		t.Error(err)
 	}
 
-	toSave := model.Spirit{
-		Name:         "Caroni 2000",
-		Distiller:    "Caroni",
-		Bottler:      "Velier",
-		Country:      "Trinidad",
-		Composition:  "Melasse",
-		SpiritType:   model.TypeRhum,
-		Age:          15,
-		BottlingDate: time.Date(2015, 01, 01, 0, 0, 0, 0, time.UTC),
-		Score:        8.5,
-		Comment:      "heavy tire taste",
-	}
+	// TODO create a new Spirit instance to be saved
 
-	err = daoMongo.SaveSpirit(&toSave)
-	if err != nil {
-		t.Error(err)
-	}
+	// TODO save the spirit with the dao
+	// TODO check the error and fail the test if not nil
 
-	t.Log("initial spirit saved", toSave)
+	// TODO log the saved spirit
 
 	spirits, err := daoMongo.GetAllSpirits(NoPaging, NoPaging)
 	if err != nil {
@@ -50,14 +35,8 @@ func TestDAOMongo(t *testing.T) {
 
 	t.Log("initial spirit found one", oneSpirit)
 
-	oneSpirit.Age = 18
-	oneSpirit.Comment = "soft tarmac smell"
-	chg, err := daoMongo.UpsertSpirit(oneSpirit.ID.Hex(), oneSpirit)
-	if err != nil {
-		t.Error(err)
-	}
-
-	t.Log("initial spirit modified", chg, oneSpirit)
+	// TODO modify Age and Comment of the spirit and Upsert it
+	// TODO check the error and fail the test if not nil
 
 	oneSpirit, err = daoMongo.GetSpiritByID(oneSpirit.ID.Hex())
 	if err != nil {
@@ -66,11 +45,10 @@ func TestDAOMongo(t *testing.T) {
 
 	t.Log("initial spirit found one modified", oneSpirit)
 
-	err = daoMongo.DeleteSpirit(oneSpirit.ID.Hex())
-	if err != nil {
-		t.Error(err)
-	}
+	// TODO delete the spirit
+	// TODO check the error and fail the test if not nil
 
+	// check the spirit is gone
 	oneSpirit, err = daoMongo.GetSpiritByID(oneSpirit.ID.Hex())
 	if err != nil {
 		t.Log("initial spirit deleted", err, oneSpirit)

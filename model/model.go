@@ -2,7 +2,6 @@ package model
 
 import (
 	"gopkg.in/mgo.v2/bson"
-	"time"
 )
 
 const (
@@ -22,18 +21,18 @@ const (
 
 // Spirit is the structure to define a spirit
 type Spirit struct {
-	ID           bson.ObjectId `json:"id" bson:"_id,omitempty" `
-	Name         string        `json:"name" bson:"name"`
-	Distiller    string        `json:"distiller" bson:"distiller"`
-	Bottler      string        `json:"bottler" bson:"bottler"`
-	Country      string        `json:"country" bson:"country"`
-	Region       string        `json:"region" bson:"region"`
-	Composition  string        `json:"composition" bson:"composition"`
-	SpiritType   string        `json:"type" bson:"type"`
-	Age          uint8         `json:"age" bson:"age"`
-	BottlingDate time.Time     `json:"bottlingDate" bson:"bottlingDate"`
-	Score        float32       `json:"score" bson:"score"`
-	Comment      string        `json:"comment" bson:"comment"`
+	ID bson.ObjectId `json:"id" bson:"_id,omitempty" `
+	// TODO add a string Name attribute
+	// TODO add a string Distiller attribute
+	// TODO add a string Bottler attribute
+	// TODO add a string Country attribute
+	// TODO add a string Region attribute
+	Composition string `json:"composition" bson:"composition"`
+	SpiritType  string `json:"type" bson:"type"`
+	// TODO add an uint8 Age attribute
+	// TODO add a time BottlingDate aatribute
+	Score   float32 `json:"score" bson:"score"`
+	Comment string  `json:"comment" bson:"comment"`
 }
 
 // GetID returns the ID of an Spirit as a string

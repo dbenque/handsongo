@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	logger "github.com/Sirupsen/logrus"
 	"time"
 )
@@ -20,14 +19,12 @@ type Statistics struct {
 
 // NewStatistics creates a new statistics structure and launches its worker routine
 func NewStatistics(loggingPeriod time.Duration) *Statistics {
-	sw := Statistics{
-		statistics:    make(chan uint8, statisticsChannelSize),
-		counter:       0,
-		start:         time.Now(),
-		loggingPeriod: loggingPeriod,
-	}
-	go sw.run()
-	return &sw
+	// TODO build a new Statistics instance
+
+	// TODO start the "run" loop in a separate go routine
+
+	// TODO return the started instance
+	return nil
 }
 
 // PlusOne is used to add one to the counter
@@ -36,18 +33,24 @@ func (sw *Statistics) PlusOne() {
 }
 
 func (sw *Statistics) run() {
-	ticker := time.NewTicker(sw.loggingPeriod)
+	// TODO build a new time.NewTicker instance of sw.loggingPeriod duration
+
+	// infinite loop select for two channel
 	for {
 		select {
+
+		// process the incoming statistics coming from the channel
 		case stat := <-sw.statistics:
 			logger.WithField("stat", stat).Debug("new count received")
 			sw.counter += uint32(stat)
-		case <-ticker.C:
-			elapsed := time.Since(sw.start)
-			logger.WithField("elapsed time", elapsed).WithField("count", sw.counter).
-				WithField("request per second", fmt.Sprintf("%.2f", float64(sw.counter)/elapsed.Seconds())).Warn("request monitoring")
-			sw.counter = 0
-			sw.start = time.Now()
+
+			// TODO add a case to listen to the ticker channel
+
+			// TODO compute the time elapsed since the start date
+			// TODO log the elapsed time, the hit count since last reset
+			// TODO bonus compute the request/sec rate
+
+			// TODO reset the counter and the start date
 		}
 	}
 }

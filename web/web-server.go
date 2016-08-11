@@ -21,7 +21,7 @@ func BuildWebServer(db string, daoType int, statisticsDuration time.Duration) (*
 	// web server
 	n := negroni.New()
 
-	// new handler
+	// new route handler
 	handler := NewSpiritHandler(dao)
 
 	// new router
@@ -40,7 +40,7 @@ func BuildWebServer(db string, daoType int, statisticsDuration time.Duration) (*
 
 	// add as many middleware as you like
 
-	// handler goes last
+	// route handler goes last
 	n.UseHandler(router)
 
 	return n, nil

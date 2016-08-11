@@ -13,12 +13,10 @@ type StatisticsMiddleware struct {
 
 // NewStatisticsMiddleware creates a new statistics middleware
 func NewStatisticsMiddleware(duration time.Duration) *StatisticsMiddleware {
-	return &StatisticsMiddleware{
-		Stat: utils.NewStatistics(duration),
-	}
+	// TODO return a pointer to a new StatisticsMiddleware with a Statistics of duration parameter
+	return nil
 }
 
 func (sm *StatisticsMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	sm.Stat.PlusOne()
-	next(rw, r)
+	// TODO call the PlusOne method and then the next Handler
 }

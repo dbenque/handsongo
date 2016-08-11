@@ -42,7 +42,8 @@ func GetSpiritDAO(param string, daoType int) (SpiritDAO, error) {
 
 		return NewSpiritDAOMongo(mgoSession), nil
 	case DAOMock:
-		return NewSpiritDAOMock(), nil
+		// TODO return a Mocked Spirit DAO instead of nil
+		return nil, nil
 	default:
 		return nil, ErrorDAONotFound
 	}

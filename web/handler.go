@@ -5,7 +5,6 @@ import (
 	"github.com/Sfeir/handsongo/model"
 	"github.com/Sfeir/handsongo/utils"
 	logger "github.com/Sirupsen/logrus"
-	"gopkg.in/mgo.v2"
 	"net/http"
 	"strconv"
 )
@@ -44,13 +43,9 @@ func NewSpiritHandler(spiritDAO dao.SpiritDAO) *SpiritHandler {
 		Pattern:     "/{id}",
 		HandlerFunc: handler.Get,
 	})
-	// Create
-	routes = append(routes, Route{
-		Name:        "Create a spirit",
-		Method:      http.MethodPost,
-		Pattern:     "",
-		HandlerFunc: handler.Create,
-	})
+
+	// TODO add the create route, with PostMethod and the Create handler
+
 	// Update
 	routes = append(routes, Route{
 		Name:        "Update a spirit",
@@ -58,13 +53,8 @@ func NewSpiritHandler(spiritDAO dao.SpiritDAO) *SpiritHandler {
 		Pattern:     "/{id}",
 		HandlerFunc: handler.Update,
 	})
-	// Delete
-	routes = append(routes, Route{
-		Name:        "Delete a spirit",
-		Method:      http.MethodDelete,
-		Pattern:     "/{id}",
-		HandlerFunc: handler.Delete,
-	})
+
+	// TODO add the delete route, with the DeleteMethod and the Delete handler on /{id}
 
 	handler.Routes = routes
 
@@ -105,25 +95,20 @@ func (sh *SpiritHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 
 // Get retrieve an entity by id
 func (sh *SpiritHandler) Get(w http.ResponseWriter, r *http.Request) {
+
+	// TODO retrieve the spiritID from the URL with ParamAsString utils
 	// get the spirit ID from the URL
-	spiritID := utils.ParamAsString("id", r)
 
+	// TODO use the spirit DAO to get the spiritID
 	// find spirit
-	spirit, err := sh.spiritDao.GetSpiritByID(spiritID)
-	if err != nil {
-		if err == mgo.ErrNotFound {
-			logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to retrieve spirit by ID")
-			utils.SendJSONNotFound(w)
-			return
-		}
 
-		logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to retrieve spirit by ID")
-		utils.SendJSONError(w, "Error while retrieving spirit by ID", http.StatusInternalServerError)
-		return
-	}
+	// TODO handle the error if not nil
 
-	logger.WithField("spirits", spirit).Debug("spirit found")
-	utils.SendJSONOk(w, spirit)
+	// TODO handle the specific case where "err == mgo.ErrNotFound" answer with SendJSONNotFound and return
+
+	// TODO for other errors answer with SendJSONError, http.StatusInternalServerError and return
+
+	// TODO if everything OK, send spirit with SendJSONOk
 }
 
 // Create create an entity
@@ -181,17 +166,13 @@ func (sh *SpiritHandler) Update(w http.ResponseWriter, r *http.Request) {
 
 // Delete delete an entity by id
 func (sh *SpiritHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	// TODO retrieve the spiritID from the URL with ParamAsString utils
 	// get the spirit ID from the URL
-	spiritID := utils.ParamAsString("id", r)
 
-	// find spirit
-	err := sh.spiritDao.DeleteSpirit(spiritID)
-	if err != nil {
-		logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to delete spirit by ID")
-		utils.SendJSONError(w, "Error while deleting spirit by ID", http.StatusInternalServerError)
-		return
-	}
+	// TODO call the DeleteSpirit on the DAO
+	// delete spirit
 
-	logger.WithField("spiritID", spiritID).Debug("spirit deleted")
-	utils.SendJSONOk(w, nil)
+	// TODO manage the error with SendJSONError, http.StatusInternalServerError and return
+
+	// TODO if not error answer with SendJSONOk and a nil body
 }
