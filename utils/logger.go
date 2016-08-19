@@ -23,7 +23,7 @@ func InitLog(logLevel, formatter string) error {
 			TimestampFormat: time.RFC3339,
 		})
 	default:
-		// TODO set the TextFormatter with colored output and full timestamp
+		// TODO set the TextFormatter with forced color in output and full timestamp
 	}
 
 	// TODO set the logger output to os.Stdout instead of os.Stderr by default
@@ -32,6 +32,5 @@ func InitLog(logLevel, formatter string) error {
 	// in case of error set the logger level to logrus.DebugLevel and return the error
 
 	// TODO if ok set the parsed level to the logger
-
 	return nil
 }
