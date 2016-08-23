@@ -44,7 +44,7 @@ func NewSpiritHandler(spiritDAO dao.SpiritDAO) *SpiritHandler {
 		HandlerFunc: handler.Get,
 	})
 
-	// TODO add the create route, with PostMethod and the Create handler
+	// TODO add the create route, with PostMethod and the Create handler (empty pattern)
 
 	// Update
 	routes = append(routes, Route{
@@ -97,7 +97,7 @@ func (sh *SpiritHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 func (sh *SpiritHandler) Get(w http.ResponseWriter, r *http.Request) {
 
 	// TODO retrieve the spiritID from the URL with ParamAsString utils
-	// get the spirit ID from the URL
+	// get the spirit 'id' from the URL
 
 	// TODO use the spirit DAO to get the spiritID
 	// find spirit
@@ -167,7 +167,7 @@ func (sh *SpiritHandler) Update(w http.ResponseWriter, r *http.Request) {
 // Delete delete an entity by id
 func (sh *SpiritHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	// TODO retrieve the spiritID from the URL with ParamAsString utils
-	// get the spirit ID from the URL
+	// get the spirit 'id' from the URL
 
 	// TODO call the DeleteSpirit on the DAO
 	// delete spirit

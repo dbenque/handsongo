@@ -38,6 +38,8 @@ func TestDAOMongo(t *testing.T) {
 	// TODO modify Age and Comment of the spirit and Upsert it
 	// TODO check the error and fail the test if not nil
 
+	// TODO log the modified spirit
+
 	oneSpirit, err = daoMongo.GetSpiritByID(oneSpirit.ID.Hex())
 	if err != nil {
 		t.Error(err)
