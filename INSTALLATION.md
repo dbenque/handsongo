@@ -1,12 +1,22 @@
 # Hand's on go tooling setup
 
+## Prerequisite
+
+You must have git and docker installed on your machine.
+
 ## Manual installation
 
 * [Install of Visual Studio Code](https://code.visualstudio.com/),
 * [Install of Go Lang plugin in VSCode](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go),
 * [Install Golang](https://golang.org/doc/install).
+* Pull needed docker images
 
-## Workspace installation
+```
+docker pull golang:1.6-wheezy
+docker pull mongo:3.2
+```
+
+### Workspace installation
 
 * Create GOPATH tree structure,
 
@@ -39,7 +49,7 @@ go get -u -v golang.org/x/tools/cmd/guru
 git clone -b start git@github.com:Sfeir/handsongo.git workspace/src/github.com/Sfeir/handsongo
 ```
 
-### as script
+### as script for linux/macos users
 
 ```
 #!/bin/bash
@@ -68,9 +78,13 @@ git clone -b start git@github.com:Sfeir/handsongo.git workspace/src/github.com/S
 * Take the package `handsongo-<OS>.zip` and unzip it,
 * Go in this folder and read the `README.md` file.
 
-Package available for `linux`, and `macos`.
+Package available for `linux`, `windows`, and `macos`.
 
 ### Need Docker image?
 
 * Take the package `handsongo-docker.zip` and unzip it,
 * Go in this folder and read the `README.md` file.
+
+## Warning for Windows users
+
+Currently, the project only provide a `Makefile` for linux/macos users.
