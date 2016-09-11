@@ -20,7 +20,7 @@ const (
 // SendJSONWithHTTPCode outputs JSON with an HTTP code
 func SendJSONWithHTTPCode(w http.ResponseWriter, d interface{}, code int) {
 	w.Header().Set(ResponseHeaderContentTypeKey, ResponseHeaderContentTypeJSONUTF8)
-	// TODO write the header code given into parameter
+	w.WriteHeader(code)
 	if d != nil {
 		err := json.NewEncoder(w).Encode(d)
 		if err != nil {
@@ -33,19 +33,17 @@ func SendJSONWithHTTPCode(w http.ResponseWriter, d interface{}, code int) {
 
 // SendJSONOk outputs a JSON with http.StatusOK code
 func SendJSONOk(w http.ResponseWriter, d interface{}) {
-	// TODO use SendJSONWithHTTPCode to send a http.StatusOK
+	SendJSONWithHTTPCode(w, d, http.StatusOK)
 }
 
 // SendJSONError sends error with a custom message and error code
 func SendJSONError(w http.ResponseWriter, error string, code int) {
-	// TODO send an error with the following body:
-	// { "Error" : "the error message given as parameter"}
-	// hint use a map[string]string and the SendJSONWithHTTPCode method
+	SendJSONWithHTTPCode(w, map[string]string{errorMsg: error}, code)
 }
 
 // SendJSONNotFound produces a http.StatusNotFound response with the following JSON, '{"Error":"Resource not found"}'
 func SendJSONNotFound(w http.ResponseWriter) {
-	// TODO use the previous method to send a http.StatusNotFound code and a "Resource not found" message
+	SendJSONError(w, resourceNotFound, http.StatusNotFound)
 }
 
 // NotFoundHandler return a JSON implementation of the not found handler

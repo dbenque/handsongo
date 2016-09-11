@@ -13,7 +13,7 @@ const (
 	DAOMock
 
 	// mongo timeout
-	timeout = 15 * time.Second
+	timeout = 5 * time.Second
 	// poolSize of mongo connection pool
 	poolSize = 35
 )

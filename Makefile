@@ -90,14 +90,13 @@ teardownTest:
 setupTest: teardownTest
 	@docker run -d --name handsongo-mongo-test -p "27017:27017" mongo:3.2
 
-# instead of go test -v $(PKGS), we run tests on package one by one
-test: setupTest
-	@export MONGODB_SRV=mongodb://$(DOCKER_IP)/spirits
-	go test -v $(shell go list ./... | grep dao)
+test:
+	# TODO uncomment if testing with real mongodb
+	#@export MONGODB_SRV=mongodb://$(DOCKER_IP)/spirits
 	go test -v $(shell go list ./... | grep model)
 	go test -v $(shell go list ./... | grep utils)
+	go test -v $(shell go list ./... | grep dao)
 	go test -v $(shell go list ./... | grep web)
-	make teardownTest
 
 bench:
 	@go test -v -run TestSpiritHandlerGet -bench=. -memprofile=prof.mem github.com/Sfeir/handsongo/web
