@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-You must have git and docker installed on your machine.
+You must have `git` and `docker` installed on your machine.
 
 ## Manual installation
 
@@ -80,11 +80,11 @@ git clone -b start git@github.com:Sfeir/handsongo.git workspace/src/github.com/S
 
 Package available for `linux`, `windows`, and `macos`.
 
-### Need Docker image?
+### Warning for Windows users
+
+Currently, the project only provide a `Makefile` for linux/macos users.
+
+## Need Docker images?
 
 * Take the package `handsongo-docker.zip` and unzip it,
 * Go in this folder and read the `README.md` file.
-
-## Warning for Windows users
-
-Currently, the project only provide a `Makefile` for linux/macos users.
