@@ -73,9 +73,10 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	var err error
 	spirits := []model.Spirit{}
 	if hasPaging {
-		// TODO if paging is defined, use the Find, Skip, Limit and All method to execute the query
+		// TODO uncomment when collection initialized
+		// err = c.Find(query).Skip(start).Limit(end - start).All(&spirits)
 	} else {
-		// TODO if no paging is defined simply query All the spirits
+		// TODO err = find all with no parameters
 	}
 
 	return spirits, err
@@ -94,22 +95,20 @@ func (s *SpiritDAOMongo) GetSpiritsByName(name string) ([]model.Spirit, error) {
 
 // GetSpiritsByType returns all spirits by type
 func (s *SpiritDAOMongo) GetSpiritsByType(spiritType string) ([]model.Spirit, error) {
-	// TODO query all spirits by their type without Paging
-	return nil, nil
+	return s.getAllSpiritsByQuery(bson.M{"type": spiritType}, NoPaging, NoPaging)
 }
 
 // GetSpiritsByTypeAndScore returns all spirits by type and score greater than parameter
 func (s *SpiritDAOMongo) GetSpiritsByTypeAndScore(spiritType string, score uint8) ([]model.Spirit, error) {
-	// TODO query all spirits by their type and score greater than score parameter ""score": bson.M{"$gte": score}"
-	return nil, nil
+	return s.getAllSpiritsByQuery(bson.M{"type": spiritType, "score": bson.M{"$gte": score}}, NoPaging, NoPaging)
 }
 
 // SaveSpirit saves the spirit
 func (s *SpiritDAOMongo) SaveSpirit(spirit *model.Spirit) error {
-	// TODO copy the session and also defer the closing
-	// TODO retrieve the collection
-	// TODO use Insert on the collection to save a spirit
-	return nil
+	session := s.session.Copy()
+	defer session.Close()
+	c := session.DB("").C(collection)
+	return c.Insert(spirit)
 }
 
 // UpsertSpirit updates or creates a spirit
@@ -126,8 +125,9 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 // DeleteSpirit deletes a spirits by its ID
 func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
-	// TODO copy the session and also defer the closing
-	// TODO retrieve the collection
-	// TODO use Remove on collection to delete a spirit by its ObjectId
-	return nil
+	session := s.session.Copy()
+	defer session.Close()
+	c := session.DB("").C(collection)
+	err := c.Remove(bson.M{"_id": bson.ObjectIdHex(ID)})
+	return err
 }

@@ -61,10 +61,16 @@ func main() {
 			Name:  "port",
 			Usage: "Set the listening port of the webserver",
 		},
-
-		// TODO add string flag called "-db" for the MongoDB connection string
-
-		// TODO add a string flag called "-logl" to provide log level of the application
+		cli.StringFlag{
+			Value: db,
+			Name:  "db",
+			Usage: "Set the mongo database connection string",
+		},
+		cli.StringFlag{
+			Value: logLevel,
+			Name:  "logl",
+			Usage: "Set the output log level (debug, info, warning, error)",
+		},
 
 		// TODO add string flag called "-logf" to choose the log format
 
@@ -80,10 +86,8 @@ func main() {
 
 		// parse parameters
 		port = c.Int("port")
-
-		// TODO assign the "-db" string param to the db var
-
-		// TODO assign the "-logl" string param to the logLevel var
+		db = c.String("db")
+		logLevel = c.String("logl")
 
 		// TODO assign the "-logf" string param to the logFormat var
 

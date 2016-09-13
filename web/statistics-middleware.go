@@ -13,8 +13,9 @@ type StatisticsMiddleware struct {
 
 // NewStatisticsMiddleware creates a new statistics middleware
 func NewStatisticsMiddleware(duration time.Duration) *StatisticsMiddleware {
-	// TODO return a pointer to a new StatisticsMiddleware with a Statistics of duration parameter
-	return nil
+	return &StatisticsMiddleware{
+		Stat: utils.NewStatistics(duration),
+	}
 }
 
 func (sm *StatisticsMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {

@@ -166,13 +166,17 @@ func (sh *SpiritHandler) Update(w http.ResponseWriter, r *http.Request) {
 
 // Delete delete an entity by id
 func (sh *SpiritHandler) Delete(w http.ResponseWriter, r *http.Request) {
-	// TODO retrieve the spiritID from the URL with ParamAsString utils
-	// get the spirit 'id' from the URL
+	// get the spirit ID from the URL
+	spiritID := utils.ParamAsString("id", r)
 
-	// TODO call the DeleteSpirit on the DAO
-	// delete spirit
+	// find spirit
+	err := sh.spiritDao.DeleteSpirit(spiritID)
+	if err != nil {
+		logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to delete spirit by ID")
+		utils.SendJSONError(w, "Error while deleting spirit by ID", http.StatusInternalServerError)
+		return
+	}
 
-	// TODO manage the error with SendJSONError, http.StatusInternalServerError and return
-
-	// TODO if not error answer with SendJSONOk and a nil body
+	logger.WithField("spiritID", spiritID).Debug("spirit deleted")
+	utils.SendJSONOk(w, nil)
 }
