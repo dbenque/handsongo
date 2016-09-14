@@ -28,7 +28,7 @@ win:
 	mkdir -p dist/win/workspace/src/github.com/Sfeir
 	mkdir -p dist/win/workspace/bin
 	mkdir -p dist/win/workspace/pkg
-	git clone git@github.com:Sfeir/handsongo.git dist/win/workspace/src/github.com/Sfeir/handsongo
+	git clone -b start https://github.com/Sfeir/handsongo.git dist/win/workspace/src/github.com/Sfeir/handsongo
 	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u -v github.com/nsf/gocode
 	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u -v github.com/rogpeppe/godef
 	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u -v github.com/golang/lint/golint
@@ -73,7 +73,7 @@ macos:
 	mkdir -p dist/macos/workspace/src/github.com/Sfeir
 	mkdir -p dist/macos/workspace/bin
 	mkdir -p dist/macos/workspace/pkg
-	git clone -b start git@github.com:Sfeir/handsongo.git dist/macos/workspace/src/github.com/Sfeir/handsongo
+	git clone -b start https://github.com/Sfeir/handsongo.git dist/macos/workspace/src/github.com/Sfeir/handsongo
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u -v github.com/nsf/gocode
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u -v github.com/rogpeppe/godef
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u -v github.com/golang/lint/golint
@@ -118,7 +118,7 @@ linux:
 	mkdir -p dist/linux/workspace/src/github.com/Sfeir
 	mkdir -p dist/linux/workspace/bin
 	mkdir -p dist/linux/workspace/pkg
-	git clone -b start git@github.com:Sfeir/handsongo.git dist/linux/workspace/src/github.com/Sfeir/handsongo
+	git clone -b start https://github.com/Sfeir/handsongo.git dist/linux/workspace/src/github.com/Sfeir/handsongo
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u -v github.com/nsf/gocode
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u -v github.com/rogpeppe/godef
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u -v github.com/golang/lint/golint
