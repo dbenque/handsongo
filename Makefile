@@ -96,10 +96,10 @@ linux:
 	@echo ******************
 	@echo prepare vscode app
 	@echo ******************
-	wget --output-document=$(shell pwd)/dist/linux/apps/vscode.zip https://go.microsoft.com/fwlink/?LinkID=620884
+	wget --output-document=$(shell pwd)/dist/linux/apps/vscode.tar.gz https://go.microsoft.com/fwlink/?LinkID=620884
 	wget --output-document=$(shell pwd)/dist/linux/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.43/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
-	unzip $(shell pwd)/dist/linux/apps/vscode.zip -d $(shell pwd)/dist/linux/apps/
-	@rm $(shell pwd)/dist/linux/apps/vscode.zip
+	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/vscode.tar.gz
+	@rm $(shell pwd)/dist/linux/apps/vscode.tar.gz
 	@echo ******************
 	@echo prepare golang app
 	@echo ******************
