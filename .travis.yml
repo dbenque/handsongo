@@ -4,10 +4,16 @@ language: go
 
 services:
   - docker
-  
+
 go:
   - 1.6
   - tip
 
+env:
+- TOOLING_TASK=win
+- TOOLING_TASK=macos
+- TOOLING_TASK=linux
+- TOOLING_TASK=docker
+
 script:
-  - make
+  - make $TOOLING_TASK
