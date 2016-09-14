@@ -66,6 +66,7 @@ macos:
 	@echo prepare tools
 	@echo ******************
 	cp macos/* dist/macos/
+	cp vscode_settings.json dist/macos/
 	@echo ******************
 	@echo prepare workspace
 	@echo ******************
@@ -110,6 +111,7 @@ linux:
 	@echo prepare tools
 	@echo ******************
 	cp linux/* dist/linux/
+	cp vscode_settings.json dist/linux/
 	@echo ******************
 	@echo prepare workspace
 	@echo ******************

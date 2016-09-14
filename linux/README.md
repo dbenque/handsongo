@@ -5,6 +5,7 @@
 * run `. ./setup.env`
 * configure VSCode with `make codeConfigure`
   * install Go plugin
+  * configure workspace settings
 * start VSCode with `make codeWorkspace`
 
 ## Use it
