@@ -12,4 +12,3 @@ script:
 branches:
   except:
   - start
-  - tooling
