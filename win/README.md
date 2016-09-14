@@ -9,9 +9,9 @@
 
 ## Use it
 * start a new command line `cmd` and
-  * go to `workspace/src/github.com/Sfeir/handsongo`
+  * go to `workspace\src.github.com\Sfeir\handsongo`
   * run `go.exe build handsongo.go` to build the program
 
 ### Warning
 
-The project is currently only linux/macos compliant with a `Makefile`.
+The project is only linux/macos compliant with a `Makefile`.

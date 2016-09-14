@@ -3,11 +3,12 @@
 ## Setup your env on macos
 
 * run `. ./setup.env`
-* install Go plugin with `code ./apps/go.vsix`
-* start VSCode with `code workspace/src/github.com/Sfeir/handsongo`
+* configure VSCode with `make codeConfigure`
+  * install Go plugin
+* start VSCode with `make codeWorkspace`
 
 ## Use it
-* go to `workspace/src/github.com/Sfeir/handsongo`
+* go to the workspace with `make goWorkspace`
 * run `make` to see help
 * run `make all` to build the program
 * run `make test` to run tests
