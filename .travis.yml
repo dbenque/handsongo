@@ -8,3 +8,7 @@ script:
   - make build
   - go get -u github.com/golang/lint/golint
   - make lint
+
+branches:
+  except:
+  - start
