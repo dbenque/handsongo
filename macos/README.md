@@ -9,7 +9,7 @@
 * start VSCode with `make codeWorkspace`
 
 ## Use it
-* go to the workspace with `make goWorkspace`
+* go to the workspace with `cd workspace/src/github.com/Sfeir/handsongo`
 * run `make` to see help
 * run `make all` to build the program
 * run `make test` to run tests
