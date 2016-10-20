@@ -41,6 +41,7 @@ go get -u -v golang.org/x/tools/cmd/gorename
 go get -u -v github.com/tpng/gopkgs
 go get -u -v github.com/newhook/go-symbols
 go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v github.com/cweill/gotests/...
 ```
 
 * Download the git repository of hand's on go and checkout the `start` branch.
@@ -69,6 +70,7 @@ go get -u -v golang.org/x/tools/cmd/gorename
 go get -u -v github.com/tpng/gopkgs
 go get -u -v github.com/newhook/go-symbols
 go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v github.com/cweill/gotests/...
 
 git clone -b start git@github.com:Sfeir/handsongo.git workspace/src/github.com/Sfeir/handsongo
 ```
