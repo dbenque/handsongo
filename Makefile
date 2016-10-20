@@ -1,50 +1,6 @@
-dist: win macos linux docker
-	rm -rf dist/win dist/macos dist/linux dist/docker
+dist: macos linux docker
+	rm -rf dist/macos dist/linux dist/docker
 	cp INSTALLATION.md dist/
-
-win:
-	@rm -rf dist/win
-	@mkdir -p dist/win/apps/VSCode
-	@echo '************************************'
-	@echo WINDOWS: prepare vscode app
-	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/win/apps/vscode.zip https://go.microsoft.com/fwlink/?LinkID=623231
-	wget -q --output-document=$(shell pwd)/dist/win/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.43/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
-	unzip -q $(shell pwd)/dist/win/apps/vscode.zip -d $(shell pwd)/dist/win/apps/VSCode/
-	@rm $(shell pwd)/dist/win/apps/vscode.zip
-	@echo '************************************'
-	@echo WINDOWS: prepare golang app
-	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/win/apps/go.zip https://storage.googleapis.com/golang/go1.6.3.windows-amd64.zip
-	unzip -q $(shell pwd)/dist/win/apps/go.zip -d $(shell pwd)/dist/win/apps/
-	@rm $(shell pwd)/dist/win/apps/go.zip
-	@echo '************************************'
-	@echo WINDOWS: prepare tools
-	@echo '************************************'
-	cp win/* dist/win/
-	@echo '************************************'
-	@echo WINDOWS: prepare workspace
-	@echo '************************************'
-	@mkdir -p dist/win/workspace/src/github.com/Sfeir
-	@mkdir -p dist/win/workspace/bin
-	@mkdir -p dist/win/workspace/pkg
-	git clone -q -b start https://github.com/Sfeir/handsongo.git dist/win/workspace/src/github.com/Sfeir/handsongo
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/nsf/gocode
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/rogpeppe/godef
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/golang/lint/golint
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/lukehoban/go-outline
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u sourcegraph.com/sqs/goreturns
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u golang.org/x/tools/cmd/gorename
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/tpng/gopkgs
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u github.com/newhook/go-symbols
-	export GOPATH=$(shell pwd)/dist/win/workspace; GOOS=windows GOARCH=amd64 go get -u golang.org/x/tools/cmd/guru
-	@[ -d dist/win/workspace/bin/windows_amd64 ] && mv dist/win/workspace/bin/windows_amd64/* dist/win/workspace/bin/ || echo 'os arch'
-	@[ -d dist/win/workspace/bin/windows_amd64 ] && rm -rf dist/win/workspace/bin/windows_amd64 || echo 'os arch'
-	@echo '************************************'
-	@echo WINDOWS: prepare archive
-	@echo '************************************'
-	cd dist/win; zip -q -r ../handsongo-win.zip *
-	@cd ../..
 
 macos:
 	@rm -rf dist/macos
@@ -158,4 +114,4 @@ docker:
 	cd dist/docker; zip -q -r ../handsongo-docker.zip *
 	@cd ../..
 
-.PHONY: win macos linux dist docker
+.PHONY: macos linux dist docker
