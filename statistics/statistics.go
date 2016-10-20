@@ -1,4 +1,4 @@
-package utils
+package statistics
 
 import (
 	logger "github.com/Sirupsen/logrus"

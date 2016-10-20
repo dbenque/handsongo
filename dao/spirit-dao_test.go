@@ -11,17 +11,20 @@ func TestDAOMock(t *testing.T) {
 		t.Error(err)
 	}
 
-	// TODO save the MockedSpirit with the dao
-	// TODO check the error and fail the test if not nil
+	err = daoMongo.SaveSpirit(&MockedSpirit)
 
-	// TODO log the saved spirit
+	if err != nil {
+		t.Error("unable to save spirit", err)
+	}
+
+	t.Log("spirit saved", MockedSpirit)
 
 	spirits, err := daoMongo.GetAllSpirits(NoPaging, NoPaging)
 	if err != nil {
 		t.Error(err)
 	}
 
-	t.Log("initial spirit found ", spirits[0])
+	t.Log("initial spirit found", spirits[0])
 
 	oneSpirit, err := daoMongo.GetSpiritByID(spirits[0].GetID())
 	if err != nil {
@@ -30,10 +33,16 @@ func TestDAOMock(t *testing.T) {
 
 	t.Log("initial spirit found one", oneSpirit)
 
-	// TODO modify Age and/or Comment of the spirit and Upsert it
-	// TODO check the error and fail the test if not nil
+	// update spirit
+	oneSpirit.Score = 9.0
+	oneSpirit.Comment = "soft tarmac smell"
 
-	// TODO log the modified spirit
+	chg, err := daoMongo.UpsertSpirit(oneSpirit.ID.Hex(), oneSpirit)
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log("initial spirit modified", chg, oneSpirit)
 
 	oneSpirit, err = daoMongo.GetSpiritByID(oneSpirit.GetID())
 	if err != nil {
