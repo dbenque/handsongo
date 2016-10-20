@@ -12,7 +12,7 @@ You must have `git` and `docker` installed on your machine.
 * Pull needed docker images
 
 ```
-docker pull golang:1.6-wheezy
+docker pull golang:1.7.3-wheezy
 docker pull mongo:3.2
 ```
 
