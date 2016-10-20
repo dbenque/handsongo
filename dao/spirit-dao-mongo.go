@@ -61,7 +61,7 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	c := session.DB("").C(collection)
 
 	// check param
-	hasPaging := start > -1 && end > -1 && end > start
+	hasPaging := start > NoPaging && end > NoPaging && end > start
 
 	// perform request
 	var err error
@@ -105,6 +105,12 @@ func (s *SpiritDAOMongo) SaveSpirit(spirit *model.Spirit) error {
 
 // UpsertSpirit updates or creates a spirit
 func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, error) {
+
+	// check ID
+	if !bson.IsObjectIdHex(ID) {
+		return false, errors.New("Invalid input to ObjectIdHex")
+	}
+
 	session := s.session.Copy()
 	defer session.Close()
 	c := session.DB("").C(collection)
@@ -117,6 +123,12 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 // DeleteSpirit deletes a spirits by its ID
 func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
+
+	// check ID
+	if !bson.IsObjectIdHex(ID) {
+		return errors.New("Invalid input to ObjectIdHex")
+	}
+
 	session := s.session.Copy()
 	defer session.Close()
 	c := session.DB("").C(collection)

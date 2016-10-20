@@ -1,7 +1,6 @@
 package web
 
 import (
-	"github.com/Sfeir/handsongo/utils"
 	logger "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -26,7 +25,7 @@ func NewRouter(handler *SpiritHandler) *Router {
 	router := Router{mux.NewRouter()}
 
 	// default JSON not found handler
-	router.NotFoundHandler = utils.NotFoundHandler()
+	router.NotFoundHandler = NotFoundHandler()
 
 	// no strict slash
 	router.StrictSlash(false)

@@ -18,7 +18,7 @@ export GO15VENDOREXPERIMENT=1
 # -----------------------------------------------------------------
 
 # version
-VERSION=0.0.4
+VERSION=0.0.3
 BUILDDATE=$(shell date -u '+%s')
 BUILDHASH=$(shell git rev-parse --short HEAD)
 VERSION_FLAG=-ldflags "-X main.Version=$(VERSION) -X main.GitHash=$(BUILDHASH) -X main.BuildStmp=$(BUILDDATE)"
@@ -27,12 +27,13 @@ VERSION_FLAG=-ldflags "-X main.Version=$(VERSION) -X main.GitHash=$(BUILDHASH) -
 #        Main targets
 # -----------------------------------------------------------------
 
+all: clean build
+
 help:
 	@echo
 	@echo "----- BUILD ------------------------------------------------------------------------------"
 	@echo "all                  clean and build the project"
 	@echo "clean                clean the project"
-	@echo "dependencies         download the dependencies"
 	@echo "build                build all libraries and binaries"
 	@echo "----- TESTS && LINT ----------------------------------------------------------------------"
 	@echo "test                 test all packages"
@@ -51,8 +52,6 @@ help:
 	@echo "----- OTHERS -----------------------------------------------------------------------------"
 	@echo "help                 print this message"
 
-all: clean build
-
 clean:
 	@go clean
 	@rm -Rf .tmp
@@ -63,19 +62,6 @@ clean:
 	@rm -Rf *.mem
 	@rm -Rf *.test
 	@rm -Rf build
-
-dependencies:
-	@echo
-	@echo "----- DOWNLOADING -------------------------------------------------------------------------"
-	@go get -u github.com/gorilla/mux
-	@go get -u github.com/gorilla/context
-	@go get -u github.com/urfave/negroni
-	@go get -u github.com/urfave/cli
-	@go get -u github.com/Sirupsen/logrus
-	@go get -u gopkg.in/mgo.v2
-	@go get -u github.com/tools/godep
-	@go get -u github.com/golang/lint/golint
-	@echo "----- DONE --------------------------------------------------------------------------------"
 
 build: format
 	@go build -v $(VERSION_FLAG) -o $(GO)/bin/handsongo handsongo.go

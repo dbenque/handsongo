@@ -17,7 +17,7 @@ func TestSpiritHandlerGet(t *testing.T) {
 	handler := NewSpiritHandler(daoMock)
 
 	// build a request
-	req, err := http.NewRequest("GET", "localhost/spirits", nil)
+	req, err := http.NewRequest(http.MethodGet, "localhost/spirits", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
