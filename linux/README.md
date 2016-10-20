@@ -10,6 +10,6 @@
 
 ## Use it
 * go to the workspace with `cd workspace/src/github.com/Sfeir/handsongo`
-* run `make` to see help
-* run `make all` to build the program
+* run `make help` to see help
+* run `make` to build the program
 * run `make test` to run tests
