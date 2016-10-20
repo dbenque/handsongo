@@ -19,6 +19,12 @@ macos:
 	tar -C $(shell pwd)/dist/macos/apps/ -xzf $(shell pwd)/dist/macos/apps/go.tar.gz
 	@rm $(shell pwd)/dist/macos/apps/go.tar.gz
 	@echo '************************************'
+	@echo MACOS: prepare jq
+	@echo '************************************'
+	@mkdir -p $(shell pwd)/dist/macos/apps/bin
+	wget -q --output-document=$(shell pwd)/dist/macos/apps/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64
+	chmod +x $(shell pwd)/dist/macos/apps/bin/jq
+	@echo '************************************'
 	@echo MACOS: prepare tools
 	@echo '************************************'
 	cp macos/* dist/macos/
@@ -63,6 +69,12 @@ linux:
 	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/go.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/go.tar.gz
+	@echo '************************************'
+	@echo MACOS: prepare jq
+	@echo '************************************'
+	@mkdir -p $(shell pwd)/dist/linux/apps/bin
+	wget -q --output-document=$(shell pwd)/dist/linux/apps/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+	chmod +x $(shell pwd)/dist/linux/apps/bin/jq
 	@echo '************************************'
 	@echo LINUX: prepare tools
 	@echo '************************************'
