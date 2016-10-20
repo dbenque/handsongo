@@ -10,7 +10,6 @@ go:
   - tip
 
 env:
-- TOOLING_TASK=win
 - TOOLING_TASK=macos
 - TOOLING_TASK=linux
 - TOOLING_TASK=docker
