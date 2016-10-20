@@ -1,4 +1,4 @@
-all:
+read:
 	cat README.md
 
 codeConfigure:

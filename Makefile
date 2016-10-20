@@ -39,8 +39,8 @@ macos:
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u github.com/tpng/gopkgs
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u github.com/newhook/go-symbols
 	export GOPATH=$(shell pwd)/dist/macos/workspace; GOOS=darwin GOARCH=amd64 go get -u golang.org/x/tools/cmd/guru
-	@[ -d dist/macos/workspace/bin/darwin_amd64 ] && mv dist/macos/workspace/bin/darwin_amd64/* dist/macos/workspace/bin/ || echo 'os arch'
-	@[ -d dist/macos/workspace/bin/darwin_amd64 ] && rm -rf dist/macos/workspace/bin/darwin_amd64 || echo 'os arch'
+	@[ -d dist/macos/workspace/bin/darwin_amd64 ] && mv dist/macos/workspace/bin/darwin_amd64/* dist/macos/workspace/bin/ || echo 'move os arch binaries'
+	@[ -d dist/macos/workspace/bin/darwin_amd64 ] && rm -rf dist/macos/workspace/bin/darwin_amd64 || echo 'clean os arch binaries folder'
 	@echo '************************************'
 	@echo MACOS: prepare archive
 	@echo '************************************'
@@ -84,8 +84,8 @@ linux:
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u github.com/tpng/gopkgs
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u github.com/newhook/go-symbols
 	export GOPATH=$(shell pwd)/dist/linux/workspace; GOOS=linux GOARCH=amd64 go get -u golang.org/x/tools/cmd/guru
-	@[ -d dist/linux/workspace/bin/linux_amd64 ] && mv dist/linux/workspace/bin/linux_amd64/* dist/linux/workspace/bin/ || echo 'os arch'
-	@[ -d dist/linux/workspace/bin/linux_amd64 ] && rm -rf dist/linux/workspace/bin/linux_amd64 || echo 'os arch'
+	@[ -d dist/linux/workspace/bin/linux_amd64 ] && mv dist/linux/workspace/bin/linux_amd64/* dist/linux/workspace/bin/ || echo 'move os arch binaries'
+	@[ -d dist/linux/workspace/bin/linux_amd64 ] && rm -rf dist/linux/workspace/bin/linux_amd64 || echo 'clean os arch binaries folder'
 	@echo '************************************'
 	@echo LINUX: prepare archive
 	@echo '************************************'
