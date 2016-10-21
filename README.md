@@ -5,7 +5,7 @@
 ## Use it
 
 ```shell
-make [win|macos|linux|docker]
+make [macos|linux|docker]
 ```
 
 ## Generated tooling
@@ -14,7 +14,3 @@ make [win|macos|linux|docker]
 
 * Linux
 * MacOS
-
-### Partial OS support
-
-* Windows (no make support)

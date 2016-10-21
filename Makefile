@@ -111,12 +111,12 @@ docker:
 	@echo '************************************'
 	@echo DOCKER: get images
 	@echo '************************************'
-	docker pull golang:1.7.3-wheezy
+	docker pull golang:1.7.3-alpine
 	docker pull mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: save images
 	@echo '************************************'
-	docker save --output dist/docker/image-golang.tar golang:1.7.3-wheezy
+	docker save --output dist/docker/image-golang.tar golang:1.7.3-alpine
 	docker save --output dist/docker/image-mongo.tar mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: prepare documentation
