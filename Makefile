@@ -74,7 +74,7 @@ teardownTest:
 	@$(shell docker rm handsongo-mongo-test 2&>/dev/null 1&>/dev/null)
 
 setupTest: teardownTest
-	@docker run -d --name handsongo-mongo-test -p "27017:27017" mongo:3.2
+	@docker run -d --name handsongo-mongo-test -p "27017:27017" mongo:3.3
 
 test: setupTest
 	@export MONGODB_SRV=mongodb://$(DOCKER_IP)/spirits; go test -v $(PKGS); make teardownTest

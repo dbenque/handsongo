@@ -1,4 +1,4 @@
-### HANDSONGO ###
+### GITIGNORE ###
 build/
 *.out
 *.log
@@ -14,7 +14,6 @@ handsongo
 .tmp/
 node_modules/
 tags
-firmware
 
 ### Go ###
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
@@ -73,3 +72,4 @@ Temporary Items
 ### INTELLIJ IDEA ###
 .idea/
 *.iml
+.vscode/

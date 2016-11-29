@@ -2,7 +2,7 @@ package utils
 
 import (
 	"github.com/Sirupsen/logrus"
-	"github.com/Sirupsen/logrus/formatters/logstash"
+	"github.com/bshuster-repo/logrus-logstash-hook"
 	"os"
 	"time"
 )
@@ -19,7 +19,7 @@ func InitLog(logLevel, formatter string) error {
 
 	switch formatter {
 	case LogStashFormatter:
-		logrus.SetFormatter(&logstash.LogstashFormatter{
+		logrus.SetFormatter(&logrus_logstash.LogstashFormatter{
 			TimestampFormat: time.RFC3339,
 		})
 	default:

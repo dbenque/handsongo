@@ -3,7 +3,7 @@ FROM golang:1.7-alpine
 
 # GO and PATH env variables already set in golang image
 # to reduce download time
-RUN apk add -U make
+RUN apk add -U make git
 
 # set the go path to import the source project
 WORKDIR $GOPATH/src/github.com/Sfeir/handsongo
@@ -13,7 +13,7 @@ ADD . $GOPATH/src/github.com/Sfeir/handsongo
 # we install the required software,
 # we build handsongo program
 # we clean the system from all build dependencies
-RUN make all && apk del make && \
+RUN make all && apk del make git && \
   rm -rf /gopath/pkg && \
   rm -rf /gopath/src && \
   rm -rf /var/cache/apk/*

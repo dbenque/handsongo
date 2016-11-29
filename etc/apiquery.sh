@@ -36,17 +36,17 @@ fi
 
 # verbose echo
 vecho() {
-	if [ "$VERBOSE" = "-v" ] ; then echo "$PROG_NAME: $*" ; fi
+  if [ "$VERBOSE" = "-v" ] ; then echo "$PROG_NAME: $*" ; fi
 }
 
 # help
 usage() {
-	echo "usage: $PROG_NAME [options] as follows :"
-	echo "	[ -create : creates an entity        ]"
-	echo "	[ -query : queries all entities      ]"
-	echo "	[ -update : updates the first entity ]"
-	echo "	[ -delete : deletes the first entity ]"
-	exit 1
+  echo "usage: $PROG_NAME [options] as follows :"
+  echo "	[ -create : creates an entity        ]"
+  echo "	[ -query : queries all entities      ]"
+  echo "	[ -update : updates the first entity ]"
+  echo "	[ -delete : deletes the first entity ]"
+  exit 1
 }
 
 # parse options and parameters
@@ -108,7 +108,7 @@ vecho "executing actions..."
 
 # create
 if [ "$CREATE" = "true" ] ; then
-	create
+  create
 fi;
 
 # create
@@ -119,13 +119,13 @@ fi;
 # update
 if [ "$UPDATE" = "true" ] ; then
   query
-	update
+  update
 fi;
 
 # delete
 if [ "$DELETE" = "true" ] ; then
   query
-	delete
+  delete
 fi;
 
 vecho "...done"

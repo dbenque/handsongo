@@ -7,7 +7,7 @@ import (
 	"github.com/Sfeir/handsongo/utils"
 	"github.com/Sfeir/handsongo/web"
 	logger "github.com/Sirupsen/logrus"
-	"github.com/urfave/cli"
+	cli "gopkg.in/urfave/cli.v1"
 	"os"
 	"strconv"
 	"time"
@@ -110,6 +110,7 @@ func main() {
 			logger.Warn("error setting log level, using debug as default")
 		}
 
+		// build the web server
 		webServer, err := web.BuildWebServer(db, dao.DAOMongo, statisticsDuration)
 
 		if err != nil {
