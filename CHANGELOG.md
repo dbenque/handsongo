@@ -1,6 +1,7 @@
 # Changelog
 ## v0.0.4 [Unreleased]
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
+           chore(build): remove travis build for working branch
 
 ## v0.0.1 [16/10/20]
 - 16/10/20 chore(build): adjust mongo, go, docker version (SFR)
