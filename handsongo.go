@@ -7,7 +7,7 @@ import (
 	"github.com/Sfeir/handsongo/utils"
 	"github.com/Sfeir/handsongo/web"
 	logger "github.com/Sirupsen/logrus"
-	"github.com/urfave/cli"
+	cli "gopkg.in/urfave/cli.v1"
 	"os"
 	"strconv"
 	"time"

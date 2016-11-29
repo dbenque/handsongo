@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"errors"
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/Sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -113,6 +114,12 @@ func (s *SpiritDAOMongo) SaveSpirit(spirit *model.Spirit) error {
 
 // UpsertSpirit updates or creates a spirit
 func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, error) {
+
+	// check ID
+	if !bson.IsObjectIdHex(ID) {
+		return false, errors.New("Invalid input to ObjectIdHex")
+	}
+
 	session := s.session.Copy()
 	defer session.Close()
 	c := session.DB("").C(collection)
@@ -125,6 +132,12 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 // DeleteSpirit deletes a spirits by its ID
 func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
+
+	// check ID
+	if !bson.IsObjectIdHex(ID) {
+		return errors.New("Invalid input to ObjectIdHex")
+	}
+
 	session := s.session.Copy()
 	defer session.Close()
 	c := session.DB("").C(collection)
