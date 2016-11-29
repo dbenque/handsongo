@@ -1,6 +1,7 @@
 # Changelog
 ## v0.0.4 [Unreleased]
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
+           chore(build): remove build in go 1.6 incompatibility gorilla mux http context
 
 ## v0.0.3 [16/10/20]
 - 16/10/20 chore(build): adjust mongo, go, docker version (SFR)
