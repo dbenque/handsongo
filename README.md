@@ -7,6 +7,9 @@
 This project is meant to help learning go. It provides a basic implementation of a REST microservice exposing a CRUD API.
 Data are persisted in a MongoDB NoSQL database and the application is deployed in Docker.
 
+## Presentation
+The slides from the #DevFestNantes2016 to get the handson done are available [here](https://t.co/0KA6YC0mM3).
+
 ## Technical stack
 
 * [Docker](https://www.docker.com)
