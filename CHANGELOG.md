@@ -1,5 +1,6 @@
 # Changelog
 ## v0.0.4 [Unreleased]
+- 17/01/31 chore(vendor): update package manager to glide and vendor version (SFR)
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
            chore(build): remove build in go 1.6 incompatibility gorilla mux http context
 
