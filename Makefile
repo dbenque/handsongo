@@ -9,13 +9,13 @@ macos:
 	@echo MACOS: prepare vscode app
 	@echo '************************************'
 	wget -q --output-document=$(shell pwd)/dist/macos/apps/vscode.zip https://go.microsoft.com/fwlink/?LinkID=620882
-	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.45/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.53/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
 	unzip -q $(shell pwd)/dist/macos/apps/vscode.zip -d $(shell pwd)/dist/macos/apps/
 	@rm $(shell pwd)/dist/macos/apps/vscode.zip
 	@echo '************************************'
 	@echo MACOS: prepare golang app
 	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.3.darwin-amd64.tar.gz
+	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.5.darwin-amd64.tar.gz
 	tar -C $(shell pwd)/dist/macos/apps/ -xzf $(shell pwd)/dist/macos/apps/go.tar.gz
 	@rm $(shell pwd)/dist/macos/apps/go.tar.gz
 	@echo '************************************'
@@ -61,13 +61,13 @@ linux:
 	@echo LINUX: prepare vscode app
 	@echo '************************************'
 	wget -q --output-document=$(shell pwd)/dist/linux/apps/vscode.tar.gz https://go.microsoft.com/fwlink/?LinkID=620884
-	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.45/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.53/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/vscode.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/vscode.tar.gz
 	@echo '************************************'
 	@echo LINUX: prepare golang app
 	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
+	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/go.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/go.tar.gz
 	@echo '************************************'
@@ -111,12 +111,12 @@ docker:
 	@echo '************************************'
 	@echo DOCKER: get images
 	@echo '************************************'
-	docker pull golang:1.7.3-alpine
+	docker pull golang:1.7.5-alpine
 	docker pull mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: save images
 	@echo '************************************'
-	docker save --output dist/docker/image-golang.tar golang:1.7.3-alpine
+	docker save --output dist/docker/image-golang.tar golang:1.7.5-alpine
 	docker save --output dist/docker/image-mongo.tar mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: prepare documentation
