@@ -15,7 +15,7 @@ macos:
 	@echo '************************************'
 	@echo MACOS: prepare golang app
 	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.5.darwin-amd64.tar.gz
+	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.tar.gz https://storage.googleapis.com/golang/go1.8.darwin-amd64.tar.gz
 	tar -C $(shell pwd)/dist/macos/apps/ -xzf $(shell pwd)/dist/macos/apps/go.tar.gz
 	@rm $(shell pwd)/dist/macos/apps/go.tar.gz
 	@echo '************************************'
@@ -67,7 +67,7 @@ linux:
 	@echo '************************************'
 	@echo LINUX: prepare golang app
 	@echo '************************************'
-	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.tar.gz https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz
+	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.tar.gz https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/go.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/go.tar.gz
 	@echo '************************************'
@@ -111,12 +111,12 @@ docker:
 	@echo '************************************'
 	@echo DOCKER: get images
 	@echo '************************************'
-	docker pull golang:1.7.5-alpine
+	docker pull golang:1.8-alpine
 	docker pull mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: save images
 	@echo '************************************'
-	docker save --output dist/docker/image-golang.tar golang:1.7.5-alpine
+	docker save --output dist/docker/image-golang.tar golang:1.8-alpine
 	docker save --output dist/docker/image-mongo.tar mongo:3.3
 	@echo '************************************'
 	@echo DOCKER: prepare documentation
