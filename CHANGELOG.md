@@ -1,5 +1,6 @@
 # Changelog
 ## v0.0.4 [Unreleased]
+- 17/03/06 chore(docker): update DockerFile to use Go alpine 1.8 (SFR)
 - 17/01/31 chore(vendor): update package manager to glide and vendor version (SFR)
            chore(doc): add the link to the slides in the README
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
