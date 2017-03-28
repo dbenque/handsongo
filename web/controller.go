@@ -13,16 +13,16 @@ const (
 	prefix = "/spirits"
 )
 
-// SpiritHandler is a handler of spirits
-type SpiritHandler struct {
+// SpiritController is a handler of spirits
+type SpiritController struct {
 	spiritDao dao.SpiritDAO
 	Routes    []Route
 	Prefix    string
 }
 
-// NewSpiritHandler creates a new spirit handler to manage spirits
-func NewSpiritHandler(spiritDAO dao.SpiritDAO) *SpiritHandler {
-	handler := SpiritHandler{
+// NewSpiritController creates a new spirit handler to manage spirits
+func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
+	controller := SpiritController{
 		spiritDao: spiritDAO,
 		Prefix:    prefix,
 	}
@@ -34,44 +34,44 @@ func NewSpiritHandler(spiritDAO dao.SpiritDAO) *SpiritHandler {
 		Name:        "Get all spirits",
 		Method:      http.MethodGet,
 		Pattern:     "",
-		HandlerFunc: handler.GetAll,
+		HandlerFunc: controller.GetAll,
 	})
 	// Get
 	routes = append(routes, Route{
 		Name:        "Get one spirit",
 		Method:      http.MethodGet,
 		Pattern:     "/{id}",
-		HandlerFunc: handler.Get,
+		HandlerFunc: controller.Get,
 	})
 	// Create
 	routes = append(routes, Route{
 		Name:        "Create a spirit",
 		Method:      http.MethodPost,
 		Pattern:     "",
-		HandlerFunc: handler.Create,
+		HandlerFunc: controller.Create,
 	})
 	// Update
 	routes = append(routes, Route{
 		Name:        "Update a spirit",
 		Method:      http.MethodPut,
 		Pattern:     "/{id}",
-		HandlerFunc: handler.Update,
+		HandlerFunc: controller.Update,
 	})
 	// Delete
 	routes = append(routes, Route{
 		Name:        "Delete a spirit",
 		Method:      http.MethodDelete,
 		Pattern:     "/{id}",
-		HandlerFunc: handler.Delete,
+		HandlerFunc: controller.Delete,
 	})
 
-	handler.Routes = routes
+	controller.Routes = routes
 
-	return &handler
+	return &controller
 }
 
 // GetAll retrieve all entities with optional paging of items (start / end are item counts 50 to 100 for example)
-func (sh *SpiritHandler) GetAll(w http.ResponseWriter, r *http.Request) {
+func (sh *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	startStr := ParamAsString("start", r)
 	endStr := ParamAsString("end", r)
@@ -103,7 +103,7 @@ func (sh *SpiritHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 // Get retrieve an entity by id
-func (sh *SpiritHandler) Get(w http.ResponseWriter, r *http.Request) {
+func (sh *SpiritController) Get(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 
@@ -126,7 +126,7 @@ func (sh *SpiritHandler) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create create an entity
-func (sh *SpiritHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (sh *SpiritController) Create(w http.ResponseWriter, r *http.Request) {
 	// spirit to be created
 	spirit := &model.Spirit{}
 	// get the content body
@@ -151,7 +151,7 @@ func (sh *SpiritHandler) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 // Update update an entity by id
-func (sh *SpiritHandler) Update(w http.ResponseWriter, r *http.Request) {
+func (sh *SpiritController) Update(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 
@@ -179,7 +179,7 @@ func (sh *SpiritHandler) Update(w http.ResponseWriter, r *http.Request) {
 }
 
 // Delete delete an entity by id
-func (sh *SpiritHandler) Delete(w http.ResponseWriter, r *http.Request) {
+func (sh *SpiritController) Delete(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 

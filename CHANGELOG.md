@@ -1,5 +1,11 @@
 # Changelog
-## v0.0.4 [Unreleased]
+## v0.0.4 [17/03/28]
+- 17/03/28 refact(dao): add typed spirit types and interface compile time check (SFR)
+           refact(model): add typed spirit types
+           refact(web): rename handler to controller
+           fix(main): fix JSON time marshalling issue with time zone conversion
+           chore(make): prevent glide lock file removal and force docker rm image
+           chore(all): make version 0.0.4
 - 17/03/06 chore(docker): update DockerFile to use Go alpine 1.8 (SFR)
 	   chore(doc): update architecture picture to remove Go 1.5
 - 17/01/31 chore(vendor): update package manager to glide and vendor version (SFR)

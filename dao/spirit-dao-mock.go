@@ -5,6 +5,9 @@ import (
 	"time"
 )
 
+// safety check
+var _ SpiritDAO = (*SpiritDAOMock)(nil)
+
 // MockedSpirit is the spirit returned by this mocked interface
 var MockedSpirit = model.Spirit{
 	Name:         "Caroni",

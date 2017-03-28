@@ -14,7 +14,7 @@ func TestSpiritHandlerGet(t *testing.T) {
 
 	// get mock dao
 	daoMock, _ := dao.GetSpiritDAO("", dao.DAOMock)
-	handler := NewSpiritHandler(daoMock)
+	controller := NewSpiritController(daoMock)
 
 	// build a request
 	req, err := http.NewRequest(http.MethodGet, "localhost/spirits", nil)
@@ -26,7 +26,7 @@ func TestSpiritHandlerGet(t *testing.T) {
 	res := httptest.NewRecorder()
 
 	// execute the query
-	handler.GetAll(res, req)
+	controller.GetAll(res, req)
 
 	var spiritOut []model.Spirit
 	json.NewDecoder(res.Body).Decode(&spiritOut)
@@ -86,7 +86,7 @@ func BenchmarkSpiritHandlerGet(t *testing.B) {
 
 	// get mock dao
 	daoMock, _ := dao.GetSpiritDAO("", dao.DAOMock)
-	handler := NewSpiritHandler(daoMock)
+	controller := NewSpiritController(daoMock)
 
 	// build a request
 	req, err := http.NewRequest("GET", "localhost/spirits", nil)
@@ -98,7 +98,7 @@ func BenchmarkSpiritHandlerGet(t *testing.B) {
 	res := httptest.NewRecorder()
 
 	// execute the query
-	handler.GetAll(res, req)
+	controller.GetAll(res, req)
 
 	var spiritOut []model.Spirit
 	err = json.NewDecoder(res.Body).Decode(&spiritOut)

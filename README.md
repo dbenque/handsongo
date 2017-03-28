@@ -21,7 +21,6 @@ The slides from the #DevFestNantes2016 to get the handson done are available [he
 * [Urfave cli the command line client parser](https://gopkg.in/urfave/cli.v1)
 * [Sirupsen the logger](https://github.com/Sirupsen/logrus)
 * [The database driver](https://gopkg.in/mgo.v2)
-* [Godep the dependency manager (deprecated)](https://github.com/tools/godep)
 * [Glide the dependency manager](https://glide.sh)
 * [Golint the source linter](https://github.com/golang/lint)
 

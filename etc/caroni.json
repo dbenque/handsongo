@@ -5,7 +5,7 @@
   "country": "Trinidad",
   "region": "",
   "composition": "Molasse",
-  "type": "rhum",
+  "type": 0,
   "age": 15,
   "bottlingDate": "2015-01-01T00:00:00Z",
   "score": 8.5,

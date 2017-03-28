@@ -5,19 +5,20 @@ import (
 	"time"
 )
 
+// SpiritType is the type of spirit as typed enumeration
+type SpiritType int
+
 const (
-	// TypeRhum is the constant used for rhum spirits
-	TypeRhum = "rhum"
-	// TypeWhine is the constant used for rhum spirits
-	TypeWhine = "wine"
-	// TypeBeer is the constant used for rhum spirits
-	TypeBeer = "beer"
-	// TypeCalados is the constant used for rhum spirits
-	TypeCalados = "calvados"
-	// TypeChampagne is the constant used for rhum spirits
-	TypeChampagne = "champagne"
-	// TypeGin is the constant used for rhum spirits
-	TypeGin = "gin"
+	// TypeRhum is the constant used for rhum spirits = 0
+	TypeRhum SpiritType = iota
+	// TypeWine is the constant used for wine
+	TypeWine
+	// TypeWhisky is the constant used for whisky
+	TypeWhisky
+	// TypeChampagne is the constant used for champagne
+	TypeChampagne
+	// TypeGin is the constant used for gin
+	TypeGin
 )
 
 // Spirit is the structure to define a spirit
@@ -29,7 +30,7 @@ type Spirit struct {
 	Country      string        `json:"country" bson:"country"`
 	Region       string        `json:"region" bson:"region"`
 	Composition  string        `json:"composition" bson:"composition"`
-	SpiritType   string        `json:"type" bson:"type"`
+	SpiritType   SpiritType    `json:"type" bson:"type"`
 	Age          uint8         `json:"age" bson:"age"`
 	BottlingDate time.Time     `json:"bottlingDate" bson:"bottlingDate"`
 	Score        float32       `json:"score" bson:"score"`

@@ -41,6 +41,10 @@ var (
 )
 
 func main() {
+
+	// set timezone as UTC for bson/json time marshalling
+	time.Local = time.UTC
+
 	// new app
 	app := cli.NewApp()
 	app.Name = "handsongo"
@@ -79,7 +83,7 @@ func main() {
 		cli.DurationFlag{
 			Value: statisticsDuration,
 			Name:  "statd",
-			Usage: "Set the token duration (ex : 1h, 2h30m, 30s, 300ms)",
+			Usage: "Set the statistics duration (ex : 1h, 2h30m, 30s, 300ms)",
 		},
 	}
 

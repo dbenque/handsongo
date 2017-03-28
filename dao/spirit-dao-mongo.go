@@ -8,6 +8,9 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// safety check
+var _ SpiritDAO = (*SpiritDAOMongo)(nil)
+
 const (
 	collection = "spirits"
 	index      = "id"
