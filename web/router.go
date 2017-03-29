@@ -20,7 +20,7 @@ type Route struct {
 }
 
 // NewRouter creates a new router instance
-func NewRouter(handler *SpiritHandler) *Router {
+func NewRouter(handler *SpiritController) *Router {
 	// new router
 	router := Router{mux.NewRouter()}
 
@@ -30,7 +30,7 @@ func NewRouter(handler *SpiritHandler) *Router {
 	// no strict slash
 	router.StrictSlash(false)
 
-	// add routes of handler
+	// add routes of controller
 	for _, route := range handler.Routes {
 		logger.WithField("route", route).Debug("adding route to mux")
 		router.

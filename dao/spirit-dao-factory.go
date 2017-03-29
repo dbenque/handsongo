@@ -6,9 +6,12 @@ import (
 	"time"
 )
 
+// DBType define the type of DAO to be used
+type DBType int
+
 const (
 	// DAOMongo is used for Mongo implementation of SpiritDAO
-	DAOMongo int = iota
+	DAOMongo DBType = iota
 	// DAOMock is used for mocked implementation of SpiritDAO
 	DAOMock
 
@@ -24,7 +27,7 @@ var (
 )
 
 // GetSpiritDAO returns a SpiritDAO according to type and params
-func GetSpiritDAO(param string, daoType int) (SpiritDAO, error) {
+func GetSpiritDAO(param string, daoType DBType) (SpiritDAO, error) {
 	switch daoType {
 	case DAOMongo:
 		// mongo connection

@@ -5,6 +5,9 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// safety check
+var _ SpiritDAO = (*SpiritDAOMock)(nil)
+
 // MockedSpirit is the spirit returned by this mocked interface
 var MockedSpirit = model.Spirit{
 	ID:          bson.NewObjectId(),

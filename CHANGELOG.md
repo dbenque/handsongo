@@ -1,9 +1,10 @@
 # Changelog
-## v0.0.4 [Unreleased]
+## v0.0.4 [17/03/28]
+- 17/03/29 refact(all): refactor branch from master evolution (SFR)
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
            chore(build): remove travis build for working branch
 
-## v0.0.1 [16/10/20]
+## v0.0.3 [16/10/20]
 - 16/10/20 chore(build): adjust mongo, go, docker version (SFR)
 - 16/10/20 chore(build): Makefile state of the art, query script (SFR)
 

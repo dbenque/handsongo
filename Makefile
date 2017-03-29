@@ -18,7 +18,7 @@ export GO15VENDOREXPERIMENT=1
 # -----------------------------------------------------------------
 
 # version
-VERSION=0.0.3
+VERSION=0.0.4
 BUILDDATE=$(shell date -u '+%s')
 BUILDHASH=$(shell git rev-parse --short HEAD)
 VERSION_FLAG=-ldflags "-X main.Version=$(VERSION) -X main.GitHash=$(BUILDHASH) -X main.BuildStmp=$(BUILDDATE)"
@@ -58,7 +58,6 @@ clean:
 	@rm -Rf .DS_Store
 	@rm -Rf *.log
 	@rm -Rf *.out
-	@rm -Rf *.lock
 	@rm -Rf *.mem
 	@rm -Rf *.test
 	@rm -Rf build
@@ -121,7 +120,7 @@ dockerUp:
 dockerStop:
 	docker-compose stop
 	docker-compose kill
-	docker-compose rm
+	docker-compose rm -f
 
 dockerBuildUp: dockerStop dockerBuild dockerUp
 

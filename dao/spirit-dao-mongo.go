@@ -8,6 +8,9 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// safety check
+var _ SpiritDAO = (*SpiritDAOMongo)(nil)
+
 const (
 	collection = "spirits"
 	index      = "id"
@@ -74,10 +77,9 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	var err error
 	spirits := []model.Spirit{}
 	if hasPaging {
-		// TODO uncomment when collection initialized
-		// err = c.Find(query).Skip(start).Limit(end - start).All(&spirits)
+		// TODO find with skip and limit all spirits
 	} else {
-		// TODO err = find all with no parameters
+		// TODO find all with no parameters
 	}
 
 	return spirits, err
