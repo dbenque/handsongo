@@ -99,7 +99,7 @@ lint:
 	@go vet $(PKGS)
 
 start:
-	@handsongo -port 8020 -logl debug -logf text -statd 15s -db mongodb://$(DOCKER_IP)/spirits
+	@$(GO)/bin/handsongo -port 8020 -logl debug -logf text -statd 15s -db mongodb://$(DOCKER_IP)/spirits
 
 stop:
 	@killall handsongo
