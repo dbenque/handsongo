@@ -25,6 +25,15 @@ macos:
 	wget -q --output-document=$(shell pwd)/dist/macos/apps/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64
 	chmod +x $(shell pwd)/dist/macos/apps/bin/jq
 	@echo '************************************'
+	@echo MACOS: prepare glide
+	@echo '************************************'
+	@mkdir -p $(shell pwd)/dist/macos/tmp_glide
+	wget -q --output-document=$(shell pwd)/dist/macos/tmp_glide/glide.zip https://github.com/Masterminds/glide/releases/download/v0.12.3/glide-v0.12.3-darwin-amd64.zip
+	unzip -q $(shell pwd)/dist/macos/tmp_glide/glide.zip -d $(shell pwd)/dist/macos/tmp_glide/
+	@mkdir -p $(shell pwd)/dist/macos/workspace/bin/
+	mv $(shell pwd)/dist/macos/tmp_glide/**/glide $(shell pwd)/dist/macos/workspace/bin/
+	@rm -rf $(shell pwd)/dist/macos/tmp_glide
+	@echo '************************************'
 	@echo MACOS: prepare tools
 	@echo '************************************'
 	cp macos/* dist/macos/
@@ -76,6 +85,15 @@ linux:
 	@mkdir -p $(shell pwd)/dist/linux/apps/bin
 	wget -q --output-document=$(shell pwd)/dist/linux/apps/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
 	chmod +x $(shell pwd)/dist/linux/apps/bin/jq
+	@echo '************************************'
+	@echo LINUX: prepare glide
+	@echo '************************************'
+	@mkdir -p $(shell pwd)/dist/linux/tmp_glide
+	wget -q --output-document=$(shell pwd)/dist/linux/tmp_glide/glide.zip https://github.com/Masterminds/glide/releases/download/v0.12.3/glide-v0.12.3-linux-amd64.zip
+	unzip -q $(shell pwd)/dist/linux/tmp_glide/glide.zip -d $(shell pwd)/dist/linux/tmp_glide/
+	@mkdir -p $(shell pwd)/dist/linux/workspace/bin/
+	mv $(shell pwd)/dist/linux/tmp_glide/**/glide $(shell pwd)/dist/linux/workspace/bin/
+	@rm -rf $(shell pwd)/dist/linux/tmp_glide
 	@echo '************************************'
 	@echo LINUX: prepare tools
 	@echo '************************************'
