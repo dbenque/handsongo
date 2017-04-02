@@ -9,7 +9,7 @@ macos:
 	@echo MACOS: prepare vscode app
 	@echo '************************************'
 	wget -q --output-document=$(shell pwd)/dist/macos/apps/vscode.zip https://go.microsoft.com/fwlink/?LinkID=620882
-	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.53/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+	wget -q --output-document=$(shell pwd)/dist/macos/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.57/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
 	unzip -q $(shell pwd)/dist/macos/apps/vscode.zip -d $(shell pwd)/dist/macos/apps/
 	@rm $(shell pwd)/dist/macos/apps/vscode.zip
 	@echo '************************************'
@@ -61,7 +61,7 @@ linux:
 	@echo LINUX: prepare vscode app
 	@echo '************************************'
 	wget -q --output-document=$(shell pwd)/dist/linux/apps/vscode.tar.gz https://go.microsoft.com/fwlink/?LinkID=620884
-	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.53/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+	wget -q --output-document=$(shell pwd)/dist/linux/apps/go.vsix https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/0.6.57/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/vscode.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/vscode.tar.gz
 	@echo '************************************'
