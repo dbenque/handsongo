@@ -71,7 +71,7 @@ linux:
 	tar -C $(shell pwd)/dist/linux/apps/ -xzf $(shell pwd)/dist/linux/apps/go.tar.gz
 	@rm $(shell pwd)/dist/linux/apps/go.tar.gz
 	@echo '************************************'
-	@echo MACOS: prepare jq
+	@echo LINUX: prepare jq
 	@echo '************************************'
 	@mkdir -p $(shell pwd)/dist/linux/apps/bin
 	wget -q --output-document=$(shell pwd)/dist/linux/apps/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
