@@ -1,4 +1,7 @@
 # Changelog
+
+## v0.0.5 [unreleased]
+-17/05/07 chore(docker): add support for multi stage docker build to reduce image size (SFR)
 ## v0.0.4 [17/03/28]
 - 17/03/28 refact(dao): add typed spirit types and interface compile time check (SFR)
            refact(model): add typed spirit types

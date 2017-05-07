@@ -106,6 +106,9 @@ stop:
 dockerBuild:
 	docker build -t sfeir/handsongo:latest .
 
+dockerBuildMulti:
+	docker build -f Dockerfile.multi -t sfeir/handsongo:latest .
+
 dockerClean:
 	docker rmi -f sfeir/handsongo:latest
 
@@ -118,6 +121,8 @@ dockerStop:
 	docker-compose rm -f
 
 dockerBuildUp: dockerStop dockerBuild dockerUp
+
+dockerBuildUpMulti: dockerStop dockerBuildMulti dockerUp
 
 dockerWatch:
 	@watch -n1 'docker ps | grep handsongo'
