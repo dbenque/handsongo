@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
+	"os"
+	"strconv"
+	"time"
+
 	"github.com/Sfeir/handsongo/dao"
 	"github.com/Sfeir/handsongo/utils"
 	"github.com/Sfeir/handsongo/web"
 	logger "github.com/Sirupsen/logrus"
 	cli "gopkg.in/urfave/cli.v1"
-	"os"
-	"strconv"
-	"time"
 )
 
 var (
@@ -75,11 +76,16 @@ func main() {
 			Name:  "logl",
 			Usage: "Set the output log level (debug, info, warning, error)",
 		},
-
-		// TODO add string flag called "-logf" to choose the log format
-
-		// TODO add a duration flag called "-statd" to define a statistic check period
-
+		cli.StringFlag{
+			Value: logFormat,
+			Name:  "logf",
+			Usage: "Set the output log format (text, logstash)",
+		},
+		cli.DurationFlag{
+			Value: statisticsDuration,
+			Name:  "statd",
+			Usage: "Set the statistic check period (1min, 15s...)",
+		},
 	}
 
 	// main action
@@ -92,10 +98,8 @@ func main() {
 		port = c.Int("port")
 		db = c.String("db")
 		logLevel = c.String("logl")
-
-		// TODO assign the "-logf" string param to the logFormat var
-
-		// TODO assign the "-statd" duration param to the statisticsDuration var
+		logFormat = c.String("logf")
+		statisticsDuration = c.Duration("statd")
 
 		fmt.Print("* --------------------------------------------------- *\n")
 		fmt.Printf("|   port                    : %d\n", port)
