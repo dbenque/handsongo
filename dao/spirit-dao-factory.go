@@ -2,8 +2,9 @@ package dao
 
 import (
 	"errors"
-	"gopkg.in/mgo.v2"
 	"time"
+
+	"gopkg.in/mgo.v2"
 )
 
 // DBType define the type of DAO to be used
@@ -45,8 +46,7 @@ func GetSpiritDAO(param string, daoType DBType) (SpiritDAO, error) {
 
 		return NewSpiritDAOMongo(mgoSession), nil
 	case DAOMock:
-		// TODO return a Mocked Spirit DAO instead of nil
-		return nil, nil
+		return NewSpiritDAOMock(), nil
 	default:
 		return nil, ErrorDAONotFound
 	}
