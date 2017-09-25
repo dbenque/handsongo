@@ -1,9 +1,10 @@
 package web
 
 import (
-	"github.com/Sfeir/handsongo/statistics"
 	"net/http"
 	"time"
+
+	"github.com/Sfeir/handsongo/statistics"
 )
 
 // StatisticsMiddleware is the middleware to record request statistics
@@ -19,5 +20,6 @@ func NewStatisticsMiddleware(duration time.Duration) *StatisticsMiddleware {
 }
 
 func (sm *StatisticsMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	// TODO call the PlusOne method and then the next Handler
+	// call the PlusOne method and then the next Handler
+	sm.Stat.PlusOne()
 }

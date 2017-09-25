@@ -1,8 +1,10 @@
 package statistics
 
 import (
-	logger "github.com/Sirupsen/logrus"
+	"fmt"
 	"time"
+
+	logger "github.com/Sirupsen/logrus"
 )
 
 const (
@@ -19,12 +21,16 @@ type Statistics struct {
 
 // NewStatistics creates a new statistics structure and launches its worker routine
 func NewStatistics(loggingPeriod time.Duration) *Statistics {
-	// TODO build a new Statistics instance
-
-	// TODO start the "run" loop in a separate go routine
-
-	// TODO return the started instance
-	return nil
+	// build a new Statistics instance
+	sw := Statistics{
+		statistics:    make(chan uint8, statisticsChannelSize),
+		counter:       0,
+		loggingPeriod: loggingPeriod,
+	}
+	// start the "run" loop in a separate go routine
+	go sw.run()
+	// return the started instance
+	return &sw
 }
 
 // PlusOne is used to add one to the counter
@@ -33,7 +39,9 @@ func (sw *Statistics) PlusOne() {
 }
 
 func (sw *Statistics) run() {
-	// TODO build a new time.NewTicker instance of sw.loggingPeriod duration
+	// time.NewTicker instance of sw.loggingPeriod duration
+	ticker := time.NewTicker(sw.loggingPeriod)
+	sw.start = time.Now()
 
 	// infinite loop select for two channel
 	for {
@@ -43,14 +51,21 @@ func (sw *Statistics) run() {
 		case stat := <-sw.statistics:
 			logger.WithField("stat", stat).Debug("new count received")
 			sw.counter += uint32(stat)
+		case <-ticker.C:
+			// compute the time elapsed since the start date
+			sinceStart := time.Since(sw.start)
+			// compute the request/sec rate
+			rate := float64(sw.counter) / sinceStart.Seconds()
+			// log the elapsed time, the hit count since last reset
+			logger.
+				WithField("elapsed time", sinceStart).
+				WithField("count", sw.counter).
+				WithField("request per second", fmt.Sprintf("%.2f", rate)).
+				Warn("request monitoring")
 
-			// TODO add a case to listen to the ticker channel
-
-			// TODO compute the time elapsed since the start date
-			// TODO log the elapsed time, the hit count since last reset
-			// TODO bonus compute the request/sec rate
-
-			// TODO reset the counter and the start date
+			// reset the counter and the start date
+			sw.counter = 0
+			sw.start = time.Now()
 		}
 	}
 }
