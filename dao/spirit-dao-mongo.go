@@ -2,6 +2,7 @@ package dao
 
 import (
 	"errors"
+
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/Sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -43,10 +44,10 @@ func NewSpiritDAOMongo(session *mgo.Session) SpiritDAO {
 
 // GetSpiritByID returns a spirit by its ID
 func (s *SpiritDAOMongo) GetSpiritByID(ID string) (*model.Spirit, error) {
-
-	// TODO use the bson library to check if the ID is a well formed ObjectId
-	// if not return a new error "Invalid input to ObjectIdHex"
 	// check ID
+	if !bson.IsObjectIdHex(ID) {
+		return nil, errors.New("Invalid input to ObjectIdHex")
+	}
 
 	// copying the session and defering the close
 	session := s.session.Copy()
@@ -65,10 +66,11 @@ func (s *SpiritDAOMongo) GetSpiritByID(ID string) (*model.Spirit, error) {
 
 // getAllSpiritsByQuery returns spirits by query and paging capability
 func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int) ([]model.Spirit, error) {
-
-	// TODO copy the session and also defer the closing
-
-	// TODO retrieve the collection
+	// copy the session and also defer the closing
+	session := s.session.Copy()
+	defer session.Close()
+	// retrieve the collection
+	c := session.DB("").C(collection)
 
 	// check param
 	hasPaging := start > NoPaging && end > NoPaging && end > start
@@ -77,9 +79,11 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	var err error
 	spirits := []model.Spirit{}
 	if hasPaging {
-		// TODO find with skip and limit all spirits
+		// find with skip and limit all spirits
+		err = c.Find(query).Skip(start).Limit(end - start).All(&spirits)
 	} else {
-		// TODO find all with no parameters
+		// find all with no parameters
+		err = c.Find(query).All(&spirits)
 	}
 
 	return spirits, err
@@ -92,8 +96,8 @@ func (s *SpiritDAOMongo) GetAllSpirits(start, end int) ([]model.Spirit, error) {
 
 // GetSpiritsByName returns all spirits by name
 func (s *SpiritDAOMongo) GetSpiritsByName(name string) ([]model.Spirit, error) {
-	// TODO with previous method, query all spirits by their name "bson.M{"name": name}" without Paging
-	return nil, nil
+	// with previous method, query all spirits by their name "bson.M{"name": name}" without Paging
+	return s.getAllSpiritsByQuery(bson.M{"name": name}, NoPaging, NoPaging)
 }
 
 // GetSpiritsByType returns all spirits by type

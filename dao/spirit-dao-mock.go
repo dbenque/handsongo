@@ -1,6 +1,8 @@
 package dao
 
 import (
+	"time"
+
 	"github.com/Sfeir/handsongo/model"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -10,17 +12,17 @@ var _ SpiritDAO = (*SpiritDAOMock)(nil)
 
 // MockedSpirit is the spirit returned by this mocked interface
 var MockedSpirit = model.Spirit{
-	ID:          bson.NewObjectId(),
-	Name:        "Caroni",
-	Distiller:   "Caroni",
-	Bottler:     "Velier",
-	Country:     "Trinidad",
-	Composition: "Molasse",
-	SpiritType:  model.TypeRhum,
-	// TODO add Age attribute of 15
-	// TODO add BottlingDate attribute with time.Date(YYYY, MM, dd, HH, MM, ss, ms, TZ)
-	Score:   8.5,
-	Comment: "heavy tire taste",
+	ID:           bson.NewObjectId(),
+	Name:         "Caroni",
+	Distiller:    "Caroni",
+	Bottler:      "Velier",
+	Country:      "Trinidad",
+	Composition:  "Molasse",
+	SpiritType:   model.TypeRhum,
+	Age:          5,
+	BottlingDate: time.Date(2017, 9, 27, 18, 30, 00, 0, time.UTC),
+	Score:        8.5,
+	Comment:      "heavy tire taste",
 }
 
 // SpiritDAOMock is the mocked implementation of the SpiritDAO
@@ -44,8 +46,8 @@ func (s *SpiritDAOMock) GetAllSpirits(start, end int) ([]model.Spirit, error) {
 
 // GetSpiritsByName returns all spirits by name
 func (s *SpiritDAOMock) GetSpiritsByName(name string) ([]model.Spirit, error) {
-	// TODO return an array of model.Spirit initialized with the MockedSpirit
-	return nil, nil
+	// return an array of model.Spirit initialized with the MockedSpirit
+	return []model.Spirit{MockedSpirit}, nil
 }
 
 // GetSpiritsByType returns all spirits by type
@@ -60,7 +62,8 @@ func (s *SpiritDAOMock) GetSpiritsByTypeAndScore(spiritType string, score uint8)
 
 // SaveSpirit saves the spirit
 func (s *SpiritDAOMock) SaveSpirit(spirit *model.Spirit) error {
-	// TODO save MockedSpirit instance with that new one
+	// save MockedSpirit instance with that new one
+	MockedSpirit = *spirit
 	return nil
 }
 
