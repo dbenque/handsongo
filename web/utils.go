@@ -2,9 +2,10 @@ package web
 
 import (
 	"encoding/json"
+	"net/http"
+
 	logger "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-	"net/http"
 )
 
 const (

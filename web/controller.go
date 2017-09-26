@@ -1,11 +1,14 @@
 package web
 
 import (
+	"net/http"
+	"strconv"
+
+	"gopkg.in/mgo.v2"
+
 	"github.com/Sfeir/handsongo/dao"
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/Sirupsen/logrus"
-	"net/http"
-	"strconv"
 )
 
 const (
@@ -43,7 +46,13 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 		HandlerFunc: controller.Get,
 	})
 
-	// TODO add the create route, with PostMethod and the Create handler (empty pattern)
+	// Create
+	routes = append(routes, Route{
+		Name:        "Create one spirit",
+		Method:      http.MethodPost,
+		Pattern:     "",
+		HandlerFunc: controller.Create,
+	})
 
 	// Update
 	routes = append(routes, Route{
@@ -53,7 +62,13 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 		HandlerFunc: controller.Update,
 	})
 
-	// TODO add the delete route, with the DeleteMethod and the Delete handler on /{id}
+	// Delete
+	routes = append(routes, Route{
+		Name:        "Delete a spirit",
+		Method:      http.MethodDelete,
+		Pattern:     "/{id}",
+		HandlerFunc: controller.Update,
+	})
 
 	controller.Routes = routes
 
@@ -62,7 +77,6 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 
 // GetAll retrieve all entities with optional paging of items (start / end are item counts 50 to 100 for example)
 func (sc *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
-
 	startStr := ParamAsString("start", r)
 	endStr := ParamAsString("end", r)
 
@@ -95,19 +109,28 @@ func (sc *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 // Get retrieve an entity by id
 func (sc *SpiritController) Get(w http.ResponseWriter, r *http.Request) {
 
-	// TODO retrieve the spiritID from the URL with ParamAsString utils
+	// retrieve the spiritID from the URL with ParamAsString utils
 	// get the spirit 'id' from the URL
+	spiritID := ParamAsString("id", r)
 
-	// TODO use the spirit DAO to get the spiritID
+	// use the spirit DAO to get the spiritID
 	// find spirit
-
-	// TODO handle the error if not nil
-
-	// TODO handle the specific case where "err == mgo.ErrNotFound" answer with SendJSONNotFound and return
-
-	// TODO for other errors answer with SendJSONError, http.StatusInternalServerError and return
-
-	// TODO if everything OK, send spirit with SendJSONOk
+	spirit, err := sc.spiritDao.GetSpiritByID(spiritID)
+	if err != nil {
+		if err == mgo.ErrNotFound {
+			// handle the specific case where "err == mgo.ErrNotFound" answer with SendJSONNotFound and return
+			logger.WithField("error", err).Warn("unable to found a spirit id" + spiritID)
+			SendJSONNotFound(w)
+			return
+		}
+		// for other errors answer with SendJSONError, http.StatusInternalServerError and return
+		logger.WithField("error", err).Warn("unable to retrieve spirit")
+		SendJSONError(w, "Error while retrieving spirit", http.StatusInternalServerError)
+		return
+	}
+	// if everything OK, send spirit with SendJSONOk
+	logger.WithField("spirit", spirit).Debug("spirit found with id:" + spiritID)
+	SendJSONOk(w, spirit)
 }
 
 // Create create an entity

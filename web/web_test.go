@@ -2,12 +2,14 @@ package web
 
 import (
 	"encoding/json"
-	"github.com/Sfeir/handsongo/dao"
-	"github.com/Sfeir/handsongo/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/Sfeir/handsongo/dao"
+	"github.com/Sfeir/handsongo/model"
+	logger "github.com/Sirupsen/logrus"
 )
 
 func TestSpiritHandlerGet(t *testing.T) {
@@ -45,9 +47,10 @@ func TestSpiritHandlerGet(t *testing.T) {
 }
 
 func TestSpiritHandlerGetServer(t *testing.T) {
+	level, _ := logger.ParseLevel("debug")
+	logger.SetLevel(level)
 
 	srv, err := BuildWebServer("", dao.DAOMock, 250*time.Millisecond)
-
 	if err != nil {
 		t.Error(err)
 	}
@@ -56,10 +59,10 @@ func TestSpiritHandlerGetServer(t *testing.T) {
 	defer ts.Close()
 
 	res, err := http.Get(ts.URL + "/spirits")
-
 	if err != nil {
 		t.Error(err)
 	}
+	defer res.Body.Close()
 
 	var resSpirit []model.Spirit
 	err = json.NewDecoder(res.Body).Decode(&resSpirit)
@@ -67,8 +70,6 @@ func TestSpiritHandlerGetServer(t *testing.T) {
 	if err != nil {
 		t.Errorf("Unable to get JSON content %v", err)
 	}
-
-	res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
 		t.Error("Wrong response code")

@@ -1,11 +1,12 @@
 package web
 
 import (
+	"time"
+
 	"github.com/Sfeir/handsongo/dao"
 	logger "github.com/Sirupsen/logrus"
 	"github.com/meatballhat/negroni-logrus"
 	"github.com/urfave/negroni"
-	"time"
 )
 
 // BuildWebServer constructs a new web server with the right DAO and spirits handler

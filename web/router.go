@@ -1,9 +1,10 @@
 package web
 
 import (
+	"net/http"
+
 	logger "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-	"net/http"
 )
 
 // Router is the struct use for routing
